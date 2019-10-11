@@ -6,16 +6,21 @@ Your function must utilize recursion. It cannot contain any loops.
 count = 0
 
 def count_th(word):
-
-    global count
-
+  count = 0
+  def helper(word):
+    nonlocal count
+    
     if len(word) == 0:
-        return count
+      return count
+    
     elif word[:2] == 'th':
-        count += 1
-        word = word[1:len(word)]
-        return count_th(word)
+      count += 1
+      word = word[1:len(word)]
+      return helper(word)
+    
     elif word[:2] != 'th':
-        word = word[1:len(word)]
-        return count_th(word)
-    return count
+      word = word[1:len(word)]
+      return helper(word)
+    
+  helper(word)
+  return count
